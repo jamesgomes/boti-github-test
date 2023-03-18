@@ -2,12 +2,12 @@
   "extends": "airbnb-base",
   "env": {
     "node": true,
-    "es6": true
+    "es6": true,
+    "mocha": true,
+    "commonjs": true
   },
   "parserOptions": {
     "ecmaVersion": 2022
   },
-  "rules": {
-    // regras personalizadas aqui
-  }
+  "rules": {}
 }
