@@ -1,0 +1,22 @@
+{
+  "check-coverage": true,
+  "extension": [
+    ".js"
+  ],
+  "include": [
+    "lib/**/*.js"
+  ],
+  "exclude": [
+    "test"
+  ],
+  "statements": 90,
+  "branches": 80,
+  "functions": 90,
+  "lines": 90,
+  "reporter": [
+    "lcov",
+    "html",
+    "text",
+    "text-summary"
+  ]
+}
