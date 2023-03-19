@@ -18,6 +18,6 @@ before(async () => {
 });
 
 after(async () => {
-  // await db.getCollection('journeys').deleteMany();
+  await db.getCollection('repositores').deleteMany();
   await db.close();
 });

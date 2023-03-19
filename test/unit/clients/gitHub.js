@@ -1,13 +1,15 @@
+require('dotenv').config();
 const { assert } = require('chai');
 const Chance = require('chance');
 const { repository } = require('../../fixed');
 
-const chance = new Chance();
-
 const getRepositoriesByLanguage = require('../../../lib/clients/gitHub');
 const nocks = require('../../nocks');
 
+const chance = new Chance();
+
 describe('Unit tests for getRepositoriesByLanguage', () => {
+  process.env.GITHUB_LIMIT_ITEMS = 1;
   it('Should get repositories successfully', async () => {
     const optionsNock = {
       language: 'language:php',
