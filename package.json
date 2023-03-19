@@ -50,6 +50,7 @@
     "node-color-log": "^10.0.2",
     "passport": "^0.6.0",
     "passport-http-bearer": "^1.0.1",
-    "sha256": "^0.2.0"
+    "sha256": "^0.2.0",
+    "swagger-ui-express": "^4.6.2"
   }
 }
