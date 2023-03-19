@@ -2,7 +2,7 @@ require('dotenv').config();
 const logger = require('node-color-log');
 const server = require('./lib/server');
 const database = require('./lib/database');
-const getRepositoriesAndSave = require('./lib/service/repository');
+const { getRepositoriesAndSave, createUserApi } = require('./lib/service/repository');
 
 const shutdown = async () => {
   logger.info('Gracefully shutdown in progress');
@@ -31,6 +31,7 @@ process.on('SIGTERM', shutdown)
     await database.connect();
     logger.info('------------------------------------------------------------------');
     await getRepositoriesAndSave();
+    await createUserApi();
     await server.start();
   } catch (err) {
     logger.error('[APP] initialization failed', err);

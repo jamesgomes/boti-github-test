@@ -1,20 +1,15 @@
 require('dotenv').config();
+const sha256 = require('sha256');
 const db = require('../lib/database');
-
-// const { authTokensFixture } = require('./collections-management/auth-token');
-// const authorizationRepository = require('../lib/authorization/repository');
 
 before(async () => {
   process.env.MONGODB_URI += '_test';
+  const dataToken = {
+    userId: 'grupoboticario',
+    token: sha256('senha'),
+  };
   await db.connect();
-
-  // const authTokenFixture = authTokensFixture.create({
-  //   clientId: 'cliente',
-  //   token: 'senha',
-  //   userId: 'teste',
-  // });
-
-  // await authorizationRepository.insertOne(authTokenFixture);
+  await db.getCollection('oauthtokens').insertOne(dataToken);
 });
 
 after(async () => {

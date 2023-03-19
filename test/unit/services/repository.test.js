@@ -1,7 +1,7 @@
 const { assert } = require('chai');
 const Chance = require('chance');
 
-const getRepositoriesByLanguage = require('../../../lib/service/repository');
+const { getRepositoriesAndSave } = require('../../../lib/service/repository');
 const dataBase = require('../../../lib/commons/repositoryDb');
 const { repository } = require('../../fixed');
 const nocks = require('../../nocks');
@@ -28,7 +28,7 @@ describe('Unit tests for searching repositories on GitHub', () => {
       },
     };
     const nockGet = nocks.getRepositoriesByLanguage(optionsNock);
-    await getRepositoriesByLanguage();
+    await getRepositoriesAndSave();
     const data = await dataBase.find(collectionName);
 
     assert.isDefined(data);
@@ -43,7 +43,7 @@ describe('Unit tests for searching repositories on GitHub', () => {
       error: new Error(),
     };
     const nockGet = nocks.getRepositoriesByLanguage(optionsNock);
-    await getRepositoriesByLanguage();
+    await getRepositoriesAndSave();
     const data = await dataBase.find(collectionName);
 
     assert.isDefined(data);

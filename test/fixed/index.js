@@ -104,4 +104,6 @@ const repository = () => ({
   score: 1.0,
 });
 
-module.exports = { repository };
+module.exports = {
+  repository,
+};
