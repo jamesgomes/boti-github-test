@@ -29,10 +29,10 @@ describe('GET /repositores/:id', () => {
 
   it('Should search an repository by id', async () => {
     const newRepositoryFixed = repository();
-    const { insertedId } = await insertRepository(newRepositoryFixed);
+    await insertRepository(newRepositoryFixed);
 
     const result = await supertest(app)
-      .get(`/repositores/${insertedId}`)
+      .get(`/repositories/${newRepositoryFixed.id}`)
       .set('Content-Type', 'application/json')
       .set('Authorization', 'Bearer senha')
       .expect(200);
@@ -43,7 +43,7 @@ describe('GET /repositores/:id', () => {
 
   it('Search repository by id and return 204', async () => {
     await supertest(app)
-      .get('/repositores/5e3c88ccd1ee050146126654')
+      .get('/repositories/1234')
       .set('Content-Type', 'application/json')
       .set('Authorization', 'Bearer senha')
       .expect(204);
@@ -52,7 +52,7 @@ describe('GET /repositores/:id', () => {
   it('Search repository by id and return 500', async () => {
     const sandbox = sinon.stub(repositoryDb, 'findById').throws(Error('db query failed'));
     await supertest(app)
-      .get('/repositores/5e3c88ccd1ee050146126654')
+      .get('/repositories/1212')
       .set('Content-Type', 'application/json')
       .set('Authorization', 'Bearer senha')
       .expect(500);

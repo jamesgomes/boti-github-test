@@ -6,7 +6,7 @@ const server = require('../../../lib/server');
 const repositoryDb = require('../../../lib/commons/repositoryDb');
 const { repository } = require('../../fixed');
 
-describe('GET /repositores', () => {
+describe('GET /repositories', () => {
   process.env.GITHUB_LIMIT_ITEMS = 1;
   let app;
 
@@ -26,11 +26,11 @@ describe('GET /repositores', () => {
     await repositoryDb.deleteMany(repositoryDb.CollectionName.REPOSITORES);
   });
 
-  it('Search all repositores', async () => {
+  it('Search all repositories', async () => {
     const newRepositoryFixed = repository();
     await insertRepository(newRepositoryFixed);
     const result = await supertest(app)
-      .get('/repositores')
+      .get('/repositories')
       .set('Content-Type', 'application/json')
       .set('Authorization', 'Bearer senha')
       .expect(200);
@@ -38,18 +38,18 @@ describe('GET /repositores', () => {
     assert.strictEqual(result.body[0].name, newRepositoryFixed.name);
   });
 
-  it('Search all repositores and return 204', async () => {
+  it('Search all repositories and return 204', async () => {
     await supertest(app)
-      .get('/repositores')
+      .get('/repositories')
       .set('Content-Type', 'application/json')
       .set('Authorization', 'Bearer senha')
       .expect(204);
   });
 
-  it('Search all repositores and return 500', async () => {
+  it('Search all repositories and return 500', async () => {
     const sandbox = sinon.stub(repositoryDb, 'find').throws(Error('db query failed'));
     await supertest(app)
-      .get('/repositores')
+      .get('/repositories')
       .set('Content-Type', 'application/json')
       .set('Authorization', 'Bearer senha')
       .expect(500);
