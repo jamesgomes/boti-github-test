@@ -24,6 +24,7 @@ npm install
 PORT=1107
 MONGODB_URI=mongodb://localhost:27017/boti-github-test
 GITHUB_URL=https://api.github.com/
+API_DEFAULT_PASSWORD=senha
 GITHUB_LANGUAGES=csharp, python, php, ruby, go
 ```
 4. Testes:

@@ -31,8 +31,9 @@ describe('GET /repositories', () => {
     const result = await supertest(app)
       .get('/repositories')
       .set('Content-Type', 'application/json')
-      .set('Authorization', 'Bearer senha')
+      .set('Authorization', `Bearer ${process.env.API_DEFAULT_PASSWORD}`)
       .expect(200);
+
     assert.strictEqual(result.body.length, 1);
     assert.strictEqual(result.body[0].name, newRepositoryFixed.name);
   });
@@ -41,7 +42,7 @@ describe('GET /repositories', () => {
     await supertest(app)
       .get('/repositories')
       .set('Content-Type', 'application/json')
-      .set('Authorization', 'Bearer senha')
+      .set('Authorization', `Bearer ${process.env.API_DEFAULT_PASSWORD}`)
       .expect(204);
   });
 
@@ -50,7 +51,7 @@ describe('GET /repositories', () => {
     await supertest(app)
       .get('/repositories')
       .set('Content-Type', 'application/json')
-      .set('Authorization', 'Bearer senha')
+      .set('Authorization', `Bearer ${process.env.API_DEFAULT_PASSWORD}`)
       .expect(500);
 
     sandbox.restore();
