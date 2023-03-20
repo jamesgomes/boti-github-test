@@ -1,6 +1,9 @@
 # boti-github-test
 
-API para buscar repositórios no GitHub e armazenar em um banco de dados MongoDB.
+Essa plicação é repensável por buscar repositórios no Github filtrando por linguagem de programação e ordenado pelos seus destaques (stargazers count), após encontrar, os dados são armazenados no banco de dados. Além de armazenar, disponibilizamos algumas rotas para consulta.
+
+Link da documentação das rotas: http://localhost:1107/api-docs/
+
 
 
 ## Instalação
