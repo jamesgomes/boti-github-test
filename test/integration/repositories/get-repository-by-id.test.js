@@ -7,11 +7,10 @@ const repositoryDb = require('../../../lib/commons/repositoryDb');
 const { repository } = require('../../fixed');
 
 describe('GET /repositores/:id', () => {
-  process.env.GITHUB_LIMIT_ITEMS = 1;
   let app;
 
   const insertRepository = async (item) => {
-    const data = await repositoryDb.insertOne(repositoryDb.CollectionName.REPOSITORES, item);
+    const data = await repositoryDb.insertOne(repositoryDb.CollectionName.REPOSITORIES, item);
     return data;
   };
 
@@ -24,7 +23,7 @@ describe('GET /repositores/:id', () => {
   });
 
   afterEach(async () => {
-    await repositoryDb.deleteMany(repositoryDb.CollectionName.REPOSITORES);
+    await repositoryDb.deleteMany(repositoryDb.CollectionName.REPOSITORIES);
   });
 
   it('Should search an repository by id', async () => {
