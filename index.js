@@ -26,12 +26,22 @@ process.on('SIGTERM', shutdown)
     logger.info(`Node process exit with code: ${code}`);
   });
 
+const clearDataBase = async () => {
+  try {
+    await database.getCollection('oauthtokens').deleteMany();
+    await database.getCollection('repositories').deleteMany();
+  } catch (error) {
+    logger.error('[APP] clear data base failed', error);
+  }
+};
+
 (async () => {
   try {
     await database.connect();
+    await clearDataBase();
     logger.info('------------------------------------------------------------------');
-    await getRepositoriesAndSave();
     await createUserApi();
+    await getRepositoriesAndSave();
     await server.start();
   } catch (err) {
     logger.error('[APP] initialization failed', err);
