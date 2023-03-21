@@ -2,7 +2,8 @@ require('dotenv').config();
 const logger = require('node-color-log');
 const server = require('./lib/server');
 const database = require('./lib/database');
-const { getRepositoriesAndSave, createUserApi } = require('./lib/service/repository');
+const { createUserApi } = require('./lib/authorization/services');
+const { getRepositoriesAndSave } = require('./lib/repositories/service');
 
 const shutdown = async () => {
   logger.info('Gracefully shutdown in progress');

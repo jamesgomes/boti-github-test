@@ -2,7 +2,8 @@ const { assert } = require('chai');
 const sinon = require('sinon');
 const Chance = require('chance');
 
-const { getRepositoriesAndSave, createUserApi } = require('../../../lib/service/repository');
+const { getRepositoriesAndSave } = require('../../../lib/repositories/service');
+const { createUserApi } = require('../../../lib/authorization/services');
 const dataBase = require('../../../lib/commons/repositoryDb');
 const { repository } = require('../../fixed');
 const nocks = require('../../nocks');
