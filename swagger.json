@@ -704,7 +704,16 @@
         "tags": [
           "repositories"
         ],
-        "summary": "Retorna uma lista de repositórios cadastrados.",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "query",
+            "description": "Filtro por linguagem. Example=Python, PHP etc.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "summary": "Retorna uma lista de repositórios cadastrados por filtro, caso não passe nenhum filtro é retornado todos os itens.",
         "security": [
           {
             "bearerAuth": []
