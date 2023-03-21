@@ -38,6 +38,19 @@ describe('GET /repositories', () => {
     assert.strictEqual(result.body[0].name, newRepositoryFixed.name);
   });
 
+  it('Search repositories by query', async () => {
+    const newRepositoryFixed = repository();
+    await insertRepository(newRepositoryFixed);
+    const result = await supertest(app)
+      .get(`/repositories?language=${newRepositoryFixed.language}`)
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${process.env.API_DEFAULT_PASSWORD}`)
+      .expect(200);
+
+    assert.strictEqual(result.body.length, 1);
+    assert.strictEqual(result.body[0].name, newRepositoryFixed.name);
+  });
+
   it('Search all repositories and return 204', async () => {
     await supertest(app)
       .get('/repositories')
